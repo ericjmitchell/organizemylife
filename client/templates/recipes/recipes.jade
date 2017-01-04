@@ -1,0 +1,11 @@
+h2 Recipes
+
+  pre
+    code
+        | this.renderCollection(
+        |    this.collection, 
+        |    RecipeView, 
+        |    this.queryByHook('recipe-list')
+        | );
+
+  ul.list-group(data-hook="recipe-list")
