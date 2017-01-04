@@ -55,6 +55,13 @@ app.delete('/api/people/:id', api.delete);
 app.put('/api/people/:id', api.update);
 app.post('/api/people', api.add);
 
+var api2 = require('./fakeApi2');
+app.get('/api/recipes', api2.list);
+app.get('/api/recipes/:id', api2.get);
+app.delete('/api/recipes/:id', api2.delete);
+app.put('/api/recipes/:id', api2.update);
+app.post('/api/recipes', api2.add);
+
 
 // -----------------
 // Enable the functional test site in development

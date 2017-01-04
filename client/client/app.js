@@ -6,6 +6,7 @@ var MainView = require('./views/main');
 var Me = require('./models/me');
 var People = require('./models/persons');
 var domReady = require('domready');
+var Recipes = require('./models/recipes/recipes');
 
 // attach our app to `window` so we can
 // easily access it from the console.
@@ -16,6 +17,7 @@ app.extend({
     me: new Me(),
     people: new People(),
     router: new Router(),
+    recipes: new Recipes(),
     // This is where it all starts
     init: function() {
         // Create and attach our main view

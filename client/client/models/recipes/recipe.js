@@ -1,5 +1,12 @@
 var AmpersandModel = require('ampersand-model');
 
+let timeFormat = (totalSeconds) => {
+    let hours = Math.floor(totalSeconds / 3600);
+    totalSeconds %= 3600;
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
+    return ('0'+hours).slice(-2) +':'+ ('0'+minutes).slice(-2) +':'+ ('0'+seconds).slice(-2);
+}
 
 module.exports = AmpersandModel.extend({
     props: {
@@ -8,9 +15,9 @@ module.exports = AmpersandModel.extend({
         thumbnail: ['string', true, ""],
         prepTime: ['number', true, 0],
         cookTime: ['number', true, 0],
-        tags: ['array', true, []],
-        ingredients: ['array', true, []],
-        instructions: ['array', true, []]
+        tags: 'array',
+        ingredients: 'array',
+        instructions: 'array'
     },
     session: {
         selected: ['boolean', true, false]
@@ -19,14 +26,14 @@ module.exports = AmpersandModel.extend({
         prepTimeString: {
             deps: ['prepTime'],
             fn: function() {
-                
+                return timeFormat(prepTime);
             }
 
         },
         cookTimeString: {
-            deps: ['prepTime'],
+            deps: ['cookTime'],
             fn: function() {
-                
+                return timeFormat(cookTime);
             }
 
         },
@@ -40,6 +47,18 @@ module.exports = AmpersandModel.extend({
             deps: ['id'],
             fn: function () {
                 return '/recipes/' + this.id;
+            }
+        },
+        ingredientsList: {
+            deps: ["ingredients"],
+            fn: () => {
+                this.ingredients.map((obj) => {return `${obj.amount} ${obj.label}`;}).join('\n');
+            }
+        },
+        instructionsList: {
+            deps: ["instructions"],
+            fn: () => {
+                this.instructions.join('\n');
             }
         }
     }
