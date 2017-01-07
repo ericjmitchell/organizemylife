@@ -58,7 +58,8 @@ function get(id) {
 }
 
 exports.list = function (req, res) {
-    res.send(people);
+    //console.log(recipes[1]);
+    res.send(recipes);
 };
 
 exports.add = function (req, res) {

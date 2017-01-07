@@ -1,9 +1,20 @@
 li.recipe.list-group-item.container
   img(data-hook="thumbnail", width="40", height="40")
-  a(data-hook="name")
-  span Prep/Cook Time: 
-  span(data-hook="prepTime") /
-  span(data-hook="cookTime")
+  a.list-item-text(href="#", data-hook="name")
+  span.list-item-text Prep/Cook Time: 
+  span.list-item-text.no-padding(data-hook="prepTime")
+  span.list-item-text.no-padding /
+  span.list-item-text.no-padding(data-hook="cookTime")
+  div.recipe.tag-group
+    ul(data-hook="tags-list")
   span.btn-group.pull-right 
     a.btn.btn-default(data-hook="action-edit") edit 
     a.btn.btn-danger(href="#", data-hook="action-delete") delete
+  br
+  div(data-hook="extendedData")
+    div.recipe-ingredients-list
+      h3.recipe-ingredient-title Ingredients
+      ul(data-hook="ingredients-list")
+    div.recipe-instructions-list
+      h3.recipe-instruction-title Instructions
+      ul(data-hook="instructions-list")

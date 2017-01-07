@@ -39,3 +39,13 @@
 body {
   background: #fff;
 }
+.list-item-text {
+  font-size: 13px;
+  padding: 10px;
+}
+.no-padding {
+  padding: 0px;
+}
+.hidden {
+  display: none;
+}

@@ -1,4 +1,10 @@
+"use strict"
+
 var AmpersandModel = require('ampersand-model');
+let Collection = require('ampersand-rest-collection');
+let IngredientModel = require('./ingredient');
+let InstructionModel = require('./instruction');
+let TagModel = require('./tag');
 
 let timeFormat = (totalSeconds) => {
     let hours = Math.floor(totalSeconds / 3600);
@@ -15,25 +21,25 @@ module.exports = AmpersandModel.extend({
         thumbnail: ['string', true, ""],
         prepTime: ['number', true, 0],
         cookTime: ['number', true, 0],
-        tags: 'array',
-        ingredients: 'array',
-        instructions: 'array'
+        tags: ['array', true],
+        ingredients: ['array', true],
+        instructions: ['array', true]
     },
     session: {
-        selected: ['boolean', true, false]
+        hidden: ['boolean', true, true]
     },
     derived: {
         prepTimeString: {
             deps: ['prepTime'],
             fn: function() {
-                return timeFormat(prepTime);
+                return timeFormat(this.prepTime);
             }
 
         },
         cookTimeString: {
             deps: ['cookTime'],
             fn: function() {
-                return timeFormat(cookTime);
+                return timeFormat(this.cookTime);
             }
 
         },
@@ -43,22 +49,26 @@ module.exports = AmpersandModel.extend({
                 return '/recipes/' + this.id + '/edit';
             }
         },
-        viewUrl: {
-            deps: ['id'],
+        tagsList: {
+            debs: ['tags'],
             fn: function () {
-                return '/recipes/' + this.id;
+                let tagModel = this.tags.map((obj) => {return {tag: obj};});
+                return new Collection(tagModel, {model: TagModel});
             }
         },
         ingredientsList: {
-            deps: ["ingredients"],
-            fn: () => {
-                this.ingredients.map((obj) => {return `${obj.amount} ${obj.label}`;}).join('\n');
+            deps: ['ingredients'],
+            fn: function () {
+                return new Collection(this.ingredients, {model: IngredientModel});
+
+                //    return this.ingredients.map((obj) => {return `${obj.amount} ${obj.label}`;}).join('\n');
             }
         },
         instructionsList: {
-            deps: ["instructions"],
-            fn: () => {
-                this.instructions.join('\n');
+            deps: ['instructions'],
+            fn: function () {
+                let instructModel = this.instructions.map((obj) => {return {instruction: obj};});
+                return new Collection(instructModel, {model: InstructionModel});
             }
         }
     }
