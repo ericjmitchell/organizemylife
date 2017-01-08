@@ -8,6 +8,7 @@ var PersonEditPage = require('./pages/person-edit');
 var PersonShowPage = require('./pages/person-show');
 
 let RecipesPage = require('./pages/recipes/recipes-list');
+let RecipeEditPage = require('./pages/recipes/recipe-edit');
 
 
 module.exports = Router.extend({
@@ -20,6 +21,8 @@ module.exports = Router.extend({
         'person/:id/edit': 'personEdit',
 
         'recipes': 'recipesList',
+        'recipe/:id': 'recipeEdit',
+        'recipe/add': 'recipeEdit',
         
         '(*path)': 'catchAll'
     },
@@ -64,6 +67,12 @@ module.exports = Router.extend({
         app.trigger('page', new RecipesPage({
             model: app.me,
             collection: app.recipes
+        }));
+    },
+
+    recipeEdit: (id) => {
+        app.trigger('page', new RecipeEditPage({
+            id: id
         }));
     },
 

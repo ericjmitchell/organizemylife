@@ -46,7 +46,7 @@ module.exports = AmpersandModel.extend({
         editUrl: {
             deps: ['id'],
             fn: function () {
-                return '/recipes/' + this.id + '/edit';
+                return '/recipe/' + this.id;
             }
         },
         tagsList: {
