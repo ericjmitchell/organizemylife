@@ -5,13 +5,13 @@ var AmpersandModel = require('ampersand-model');
 module.exports = AmpersandModel.extend({
     props: {
         amount: ['string', true, ''],
-        label: ['string', true, ""]
+        item: ['string', true, ""]
     },
     derived: {
         ingredientString: {
-            deps: ['amount', 'label'],
+            deps: ['amount', 'item'],
             fn: function() {
-                return `${this.amount} ${this.label}`;
+                return `${this.amount} ${this.item}`;
             }
         }
     }

@@ -1,5 +1,6 @@
-div.form-group
-  label(data-hook='label')
-  div(data-hook='message-container')
-    .alert.alert-danger(data-hook='message-text')
-  input.form-control
+div
+  span(data-hook="label")
+  div(data-hook="field-container")
+  a.add-input(data-hook="add-field") add
+  div.message.message-below.message-error(data-hook="main-message-container")
+    p(data-hook="main-message-text")

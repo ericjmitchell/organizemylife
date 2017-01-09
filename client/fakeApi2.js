@@ -17,7 +17,7 @@ var recipes = [
         prepTime: 1800,
         cookTime: 1800,
         tags: ["bread", "honey"],
-        ingredients: [{amount: "1 cup", label: "honey"}, {amount: "1 slice", label: "bread"}],
+        ingredients: [{amount: "1 cup", item: "honey"}, {amount: "1 slice", item: "bread"}],
         instructions: ["Pour honey on bread", "Eat the bread"]
     },
     {
@@ -27,7 +27,7 @@ var recipes = [
         prepTime: 1800,
         cookTime: 1800,
         tags: ["bread", "honey"],
-        ingredients: [{amount: "1 cup", label: "honey"}, {amount: "1 slice", label: "bread"}],
+        ingredients: [{amount: "1 cup", item: "honey"}, {amount: "1 slice", item: "bread"}],
         instructions: ["Pour honey on bread", "Eat the bread"]
     },
     {
@@ -37,7 +37,7 @@ var recipes = [
         prepTime: 1800,
         cookTime: 1800,
         tags: ["bread", "honey"],
-        ingredients: [{amount: "1 cup", label: "honey"}, {amount: "1 slice", label: "bread"}],
+        ingredients: [{amount: "1 cup", item: "honey"}, {amount: "1 slice", item: "bread"}],
         instructions: ["Pour honey on bread", "Eat the bread"]
     },
     {
@@ -47,7 +47,7 @@ var recipes = [
         prepTime: 1800,
         cookTime: 1800,
         tags: ["bread", "honey"],
-        ingredients: [{amount: "1 cup", label: "honey"}, {amount: "1 slice", label: "bread"}],
+        ingredients: [{amount: "1 cup", item: "honey"}, {amount: "1 slice", item: "bread"}],
         instructions: ["Pour honey on bread", "Eat the bread"]
     }
 ];

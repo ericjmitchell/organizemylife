@@ -1,12 +1,28 @@
 var FormView = require('ampersand-form-view');
 var InputView = require('ampersand-input-view');
 var ArrayInputView = require('ampersand-array-input-view');
+var myArrayInputView = require('../../lib/ampersand-array-multifield-view/ampersand-array-multifield-view');
 var templates = require('../templates');
+var IngredientsView = require('./ingredient');
+
 var ExtendedInput = InputView.extend({
     template: templates.includes.formInput()
 });
 var ExtendedArrayInput = ArrayInputView.extend({
-    template: templates.includes.arrayFormInput()
+    initialize: function () {
+        if (!this.label) this.label = this.name;
+        this.fields = [];
+        // calculate default value if not provided
+        var defaultVal = [];
+        // make sure there's at least one
+        var num = this.minLength || 1;
+        while (num--) {
+            defaultVal.push('');
+        }
+        if (!this.value.length) this.value = defaultVal;
+        this.on('change:valid change:value', this.updateParent, this);
+        //this.render();
+    }
 });
 
 
@@ -49,21 +65,35 @@ module.exports = FormView.extend({
                 label: 'Tags',
                 name: 'tags',
                 value: (this.model && this.model.tags) || [],
+                template: templates.includes.arrayFormInput(),
+                fieldTemplate: templates.includes.arrayFormField(),
                 minLength: 0,
+                maxLength: 100,
+                autoRender: false,
                 parent: this
             }),
-            new ExtendedArrayInput({
+            new myArrayInputView({
                 label: 'Ingredients',
                 name: 'ingredients',
                 value: (this.model && this.model.ingredients) || [],
+                template: templates.includes.arrayFormInput(),
+                fieldTemplate: templates.includes.arrayFormField(),
                 minLength: 0,
-                parent: this
+                maxLength: 100,
+                parent: this,
+                multiFields: [
+                    {name: 'amount', label: 'Amount', placeholder: 'Amount'},
+                    {name: 'item', label: 'Item', placeholder: 'Item'}
+                ]
             }),
             new ExtendedArrayInput({
                 label: 'Instructions',
                 name: 'instructions',
                 value: (this.model && this.model.instructions) || [],
+                template: templates.includes.arrayFormInput(),
+                fieldTemplate: templates.includes.arrayFormField(),
                 minLength: 0,
+                maxLength: 100,
                 parent: this
             })
         ];
