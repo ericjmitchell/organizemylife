@@ -1,30 +1,12 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, browserHistory, Link } from 'react-router-dom';
+import React from "react";
+import "./app.css";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 //Layouts
 
 //Pages
-import Home from './pages/home';
-import FoodLayout from './pages/food/food_layout';
-
-/*
-const App = () => (
-  <Router history={browserHistory}>
-    <Route component={MainLayout}>
-      <Route path="/" component={Home} />
-
-      <Route path="food" component={FoodLayout}>
-        <IndexRoute component={FoodHome} />
-        <Route path="recipes" >
-          <IndexRoute component={RecipesHome} />
-          <Route path="create" component={RecipesCreate} />
-        </Route>
-      </Route>
-
-    </Route>
-  </Router>
-)*/
+import Home from "./components/views/home";
+import FoodLayout from "./components/views/food/food-layout";
 
 const App = () => (
   <Router>
@@ -38,10 +20,10 @@ const App = () => (
           <li><Link to="/food">Food</Link></li>
         </ul>
       </header>
-      <main>
+      <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/food" component={FoodLayout} />
-      </main>
+      </Switch>
     </div>
 </Router>
 )
