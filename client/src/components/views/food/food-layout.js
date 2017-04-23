@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Sidebar from "../sidebar"
 import FoodHome from "./food-home";
 import RecipesListContainer from "../../containers/recipes-list-container";
-import RecipesCreate from "./recipes-create";
+import RecipesCreateContainer from "../../containers/recipes-create-container";
 
 const FoodLayout = ({ match }) => (
   <div className="layout">
@@ -14,7 +14,7 @@ const FoodLayout = ({ match }) => (
     <Switch>
       <Route exact path={match.url} component={FoodHome} />
       <Route exact path={`${match.url}/recipes`} component={RecipesListContainer} />
-      <Route path={`${match.url}/recipes/create`} component={RecipesCreate} />
+      <Route path={`${match.url}/recipes/create`} component={RecipesCreateContainer} />
     </Switch>
   </div>
 )

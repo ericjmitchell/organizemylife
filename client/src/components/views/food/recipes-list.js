@@ -1,17 +1,23 @@
 import React from "react";
 import Page from "../page";
+import { Link } from "react-router-dom";
 
-const RecipesList = ({recipes}) => {
+const RecipesList = ({ recipes, deleteRecipe }) => {
   return (
     <Page title="Recipes" body={
-      <ul>
-        {
-          recipes.map(recipe => {
-            return (
-              <li key={recipe.id}>{recipe.name}</li>
-            )
-          })}
-      </ul>
+      <div>
+        <Link to="/food/recipes/create">Create Recipe</Link>
+        <ul>
+          {
+            recipes.map(recipe => {
+              return (
+                <li key={recipe.id}>{recipe.name}
+                  <button onClick={deleteRecipe.bind(null,recipe.id)}>Delete</button>
+                </li>
+              )
+            })}
+        </ul>
+      </div>
     } />
   );
 }

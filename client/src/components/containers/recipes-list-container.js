@@ -14,7 +14,6 @@ class RecipesListContainer extends Component {
       <RecipesList recipes={this.props.recipes} deleteRecipe={RecipesApi.deleteRecipe} />
     );
   }
-
 }
 
 const mapStateToProps = (store) => {
