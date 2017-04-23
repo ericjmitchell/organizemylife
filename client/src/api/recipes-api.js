@@ -41,7 +41,7 @@ export function deleteRecipe(recipeId) {
 }
 
 export function saveRecipe(recipe) {
-  return axios.post(`${settings.API_BASE_URL}/food/recipes/update`, recipe)
+  return axios.post(`${settings.API_BASE_URL}/food/recipes`, recipe)
     .then(response => {
       store.dispatch(saveRecipeSuccess(recipe));
       return response;

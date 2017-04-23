@@ -56,7 +56,7 @@ export default (router) => {
       }
     })
 
-    .post("/food/recipes/update", async ctx => {
+    .post("/food/recipes", async ctx => {
       try {
         let keys = await saveRecipe(ctx.request.body);
         ctx.body = keys;
